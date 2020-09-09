@@ -14,7 +14,7 @@ export default props => {
                 <dd 
                     key={i} 
                     style={geometricNameStyle}>
-                    <div
+                    <div    
                         onDragEnd={() => props.dragEnd()}
                         onDragStart={() => props.dragIn(i, square.tipo)} 
                         draggable="true">
@@ -40,24 +40,39 @@ export default props => {
         )
      }) : null
 
+     const geometricHeader = (
+        props.square.length > 0 || props.triangle.length > 0 ?
+            <dt><img src={FolderIcon} alt="icone de pasta"/> Formas geométricas</dt>
+            : null
+     )
+     const squareHeader = (
+        props.square.length > 0 ?
+            <section className='geometricHeader'>
+            <img src={FolderIcon} alt="icone de pasta"/>Quadrados
+            </section>
+        : null
+     )
+     const triangleHeader = (
+        props.triangle.length > 0 ?
+            <section className='geometricHeader'>
+            <img src={FolderIcon} alt="icone de pasta"/> Triângulo
+            </section>
+        : null
+     )
     return (
         <div>
             <dl>
-                <dt><img src={FolderIcon} alt="icone de pasta"/> Formas geométricas</dt>
-                <dd>
-                    <section className='geometricHeader'>
-                        <img src={FolderIcon} alt="icone de pasta"/>Quadrados
-                    </section>
-                    <section className='geometricContent'>
-                        {square}
-                    </section>
-                    <section className='geometricHeader'>
-                        <img src={FolderIcon} alt="icone de pasta"/> Triângulo
-                    </section>
-                    <section className='geometricContent'>
-                        {triangle}
-                    </section>
-                </dd>
+                {geometricHeader}
+                    <dd>
+                            {squareHeader}
+                        <section className='geometricContent'>
+                            {square}
+                        </section>
+                            {triangleHeader}
+                        <section className='geometricContent'>
+                            {triangle}
+                        </section>
+                    </dd>
             </dl>
         </div>
     )

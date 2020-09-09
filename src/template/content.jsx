@@ -17,6 +17,7 @@ class Content extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            panel: false,
             index: 0,
             dragInType: '',
             showModal: false,
@@ -31,6 +32,7 @@ class Content extends Component {
         this.showModal = this.showModal.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)
         this.createGeometricShapes = this.createGeometricShapes.bind(this)
+        this.dragEnter = this.dragEnter.bind(this)
         this.dragIn = this.dragIn.bind(this)
         this.dragDrop = this.dragDrop.bind(this)
     }
@@ -76,6 +78,11 @@ class Content extends Component {
                }  
             }
     }
+    dragEnter(event) {
+        if(event.target.className === 'panel') {
+            this.setState({panel: true})
+        }
+    }
     /* Inicia o evento de arrastar */
     dragIn(index, tipo) {
         this.setState({
@@ -85,31 +92,35 @@ class Content extends Component {
     }
     /* Finaliza o evento de Arrastar e cria os elementos no painel de visualizacao */
     dragDrop(event) {
+        console.log(this.state.panel)
+        if(this.state.panel) {
             const panel  =  document.getElementById('panel');
-            if(panel.childElementCount > 0 ){
-                for (const child of panel.children){
-                    child.remove();
+                if(panel.childElementCount > 0 ){
+                    for (const child of panel.children){
+                        child.remove();
+                    }
                 }
-            }
-            const geometric = this.state.dragInType === 'quadrado' 
-                ? this.state.quadrados[this.state.index] 
-                : this.state.triangulos[this.state.index]
-    
-            const el = document.createElement('div')
+                const geometric = this.state.dragInType === 'quadrado' 
+                    ? this.state.quadrados[this.state.index] 
+                    : this.state.triangulos[this.state.index]
+        
+                const el = document.createElement('div')
 
-            if(this.state.dragInType === 'triangulo') {
-                el.style.width = '0px'
-                el.style.height = '0px'
-                el.style.borderLeft = `${geometric.tamanho}px solid transparent`
-                el.style.borderRight = `${geometric.tamanho}px solid transparent`
-                el.style.borderBottom = `${geometric.tamanho}px solid ${geometric.cor}`
-            } else if (this.state.dragInType === 'quadrado') {
-                el.style.backgroundColor = geometric.cor
-                el.style.width = `${String(geometric.tamanho)}px`
-                el.style.height = `${String(geometric.tamanho)}px`
-            }
-
-            panel.appendChild(el)    
+                if(this.state.dragInType === 'triangulo') {
+                    el.style.width = '0px'
+                    el.style.height = '0px'
+                    el.style.borderLeft = `${geometric.tamanho}px solid transparent`
+                    el.style.borderRight = `${geometric.tamanho}px solid transparent`
+                    el.style.borderBottom = `${geometric.tamanho}px solid ${geometric.cor}`
+                } else if (this.state.dragInType === 'quadrado') {
+                    el.style.backgroundColor = geometric.cor
+                    el.style.width = `${String(geometric.tamanho)}px`
+                    el.style.height = `${String(geometric.tamanho)}px`
+                }
+                panel.appendChild(el)
+                this.setState({panel: false})
+        }
+        
     }
     render() {
         const modal = this.state.showModal ? (
@@ -145,8 +156,8 @@ class Content extends Component {
                         width='70%'
                         height='100%'> 
                         <div 
+                            onDragEnter={(e) => this.dragEnter(e)}
                             id='panel'
-                            onDrop={() => this.dragDrop}
                             className='panel'>
                         </div>
                     </Card>
