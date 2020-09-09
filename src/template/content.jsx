@@ -58,21 +58,23 @@ class Content extends Component {
             tamanho: this.state.tamanho
         }
 
-        !this.state.nome || !this.state.tipo || !this.state.cor 
-            || !this.state.tamanho ?
-            this.setState({openError: true}) : this.setState({openError: false})
-        
-       if(this.state.tipo === 'quadrado') {
-            this.setState({
-                quadrados: [...this.state.quadrados, geometricShapes]
-            })
-       } else if (this.state.tipo === 'triangulo') {
-            this.setState({
-                triangulos: [...this.state.triangulos, geometricShapes]
-            })
-       }
-       
-       this.setState({...initialState})
+        if(!this.state.nome || !this.state.tipo || !this.state.cor 
+            || !this.state.tamanho || this.state.tamanho < 0) {
+                this.setState({openError: true})
+            } else {
+                this.setState({openError: false})
+                if(this.state.tipo === 'quadrado') {
+                    this.setState({
+                        quadrados: [...this.state.quadrados, geometricShapes]
+                    })
+                    this.setState({...initialState})
+               } else if (this.state.tipo === 'triangulo') {
+                    this.setState({
+                        triangulos: [...this.state.triangulos, geometricShapes]
+                    })
+                    this.setState({...initialState})
+               }  
+            }
     }
     /* Inicia o evento de arrastar */
     dragIn(index, tipo) {
