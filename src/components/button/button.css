@@ -1,0 +1,25 @@
+.buttonContent button:active {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.buttonContent {
+    width: 200px;
+    height: 40px;  
+}
+
+.buttonContent button {
+    width: 100%;
+    height: 100%;   
+
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+    font-size: 0.875rem;
+    letter-spacing: 1.25px;
+}
+.buttonContent :hover {
+    background-color: #D3D3D3;
+    transition: 200ms;
+}

@@ -1,0 +1,17 @@
+dt {
+    display: flex;
+    align-items: center;
+}
+img {
+    margin-right: 10px;
+}
+.geometricHeader {
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+}
+.geometricContent {
+    display: flex;
+    flex-direction: column;
+}

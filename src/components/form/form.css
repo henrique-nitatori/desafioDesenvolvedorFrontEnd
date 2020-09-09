@@ -1,0 +1,74 @@
+.contentModal {
+    width: 100%;
+    height: 100%;
+    top: 0%; 
+    left: 0%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 9999;
+
+}
+.formContent {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formContent header {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+}
+.formContent header img{
+    cursor: pointer;
+}
+.formfield {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+table {
+    border-collapse: separate; 
+    border-spacing: 20px;
+}
+.contentTable {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+}
+.buttonPanel {  
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+#tamanho {
+    width: 60px;
+    margin-right: 20px;
+}
+input {
+    width: 250px;
+    height: 30px;
+    padding: 0px;
+    margin: 0px;
+    border-width: 1px;
+    font-size: 1.2rem;
+}
+select {
+    width: 250px;
+    height: 30px;
+    font-size: 1rem;
+}
