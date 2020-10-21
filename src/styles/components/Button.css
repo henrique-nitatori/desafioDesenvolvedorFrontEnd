@@ -1,0 +1,13 @@
+.custom-button {
+    height: 55px;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 30px;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.custom-button:hover {
+    background: rgba(0, 0, 0, 0.1)
+}
